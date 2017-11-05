@@ -16,16 +16,20 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import ca.smchan.sif.core.IStartable;
+import ca.smchan.sif.core.SifPropertyDef;
 import robotique_3975_esjm.frc2018.interface_sonar.ISonarDetectionEventListener;
 import robotique_3975_esjm.frc2018.interface_sonar.ISonarDetectionEventObservable;
 import robotique_3975_esjm.frc2018.interface_sonar.SonarDetectionEvent;
-import robotique_3975_esjm.frc2018.sif.IStartable;
 
 /**
  * Simulateur de sonar.
  */
 public class NullSonar implements IStartable, ISonarDetectionEventObservable, Runnable
 {
+    private static final org.apache.logging.log4j.Logger LOGGER = org.apache.logging.log4j.LogManager
+            .getLogger(NullSonar.class);
+
 	private static final Insets DEFAULT_INSETS = new Insets(5, 5, 5, 5);
 	private final LinkedList<ISonarDetectionEventListener> _listeners = new LinkedList<>();
 	private JTextField _jtf_deviceId;
@@ -42,6 +46,7 @@ public class NullSonar implements IStartable, ISonarDetectionEventObservable, Ru
 		// ...
 	}
 
+    @SifPropertyDef(name = "add_listener")
 	@Override
 	public void addSonarDetectionEventListener(ISonarDetectionEventListener listener)
 	{
@@ -80,8 +85,7 @@ public class NullSonar implements IStartable, ISonarDetectionEventObservable, Ru
 		}
 		catch (Exception e)
 		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+            LOGGER.warn("Unhandled exception", e);
 		}
 	}
 
@@ -207,7 +211,7 @@ public class NullSonar implements IStartable, ISonarDetectionEventObservable, Ru
 			}
 			catch (Exception e)
 			{
-				e.printStackTrace();
+                LOGGER.warn("Unhandled exception", e);
 			}
 		}
 	}

@@ -51,6 +51,9 @@ public class SimpleSoundEngine implements ISoundEngine
 
 	private class PlaySoundTask implements Runnable
 	{
+        private final org.apache.logging.log4j.Logger LOGGER = org.apache.logging.log4j.LogManager
+                .getLogger(SimpleSoundEngine.PlaySoundTask.class);
+
 		private File _file;
 
 		public PlaySoundTask(File file)
@@ -67,8 +70,7 @@ public class SimpleSoundEngine implements ISoundEngine
 			}
 			catch (Exception e)
 			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+                LOGGER.warn("Unhandled exception", e);
 			}
 		}
 
