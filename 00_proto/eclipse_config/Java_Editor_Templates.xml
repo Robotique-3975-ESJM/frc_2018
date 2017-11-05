@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><templates><template autoinsert="true" context="java" deleted="false" description="Define log4j logger" enabled="true" name="LOGGER">	private static final org.apache.logging.log4j.Logger LOGGER = org.apache.logging.log4j.LogManager&#13;
+			.getLogger(${enclosing_type}.class);&#13;
+</template><template autoinsert="true" context="java-members" deleted="false" description="" enabled="true" name="main_doStuff">    public static void main(String[] args)&#13;
+    {&#13;
+        try&#13;
+        {&#13;
+            doStuff();&#13;
+        }&#13;
+        catch (Exception e)&#13;
+        {&#13;
+            // ${todo} Auto-generated catch block&#13;
+            e.printStackTrace();&#13;
+        }&#13;
+    }&#13;
+&#13;
+    private static void doStuff() throws Exception&#13;
+    {&#13;
+		${cursor}&#13;
+    }&#13;
+</template></templates>
