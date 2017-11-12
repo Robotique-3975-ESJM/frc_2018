@@ -1,6 +1,7 @@
 package robotique_3975_esjm.frc2018.appli_declencheur_son;
 
 import java.io.File;
+import java.util.Random;
 
 import ca.smchan.sif.core.IInitializable;
 import ca.smchan.sif.core.SifPropertyDef;
@@ -18,8 +19,12 @@ public class App implements IInitializable, ISonarDetectionEventListener
 
     private ISoundEngine _soundEngine;
     private int _seuilMinMM = 20; // 2cm
-    private int _seuilMaxMM = 200; // 20cm
+    private int _seuilMaxMM = 500; // 50cm
     private boolean _dernierEtat = false;
+
+    private File[] _files;
+
+    private Random _random;
 
     public App()
     {
@@ -35,6 +40,9 @@ public class App implements IInitializable, ISonarDetectionEventListener
     @Override
     public void onInitialize()
     {
+        File dir = new File("banque_de_son/");
+        _files = dir.listFiles();
+        _random = new Random();
     }
 
     @Override
@@ -58,7 +66,10 @@ public class App implements IInitializable, ISonarDetectionEventListener
             {
                 LOGGER.info("déclenchement!!");
                 _soundEngine.stopPlayback();
-                _soundEngine.playSound(new File("banque_de_son/sm64_mario_its_me.wav"));
+
+                int index = Math.abs(_random.nextInt()) % _files.length;
+
+                _soundEngine.playSound(_files[index]);
             }
             catch (Exception e)
             {

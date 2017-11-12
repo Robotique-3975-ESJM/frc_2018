@@ -4,6 +4,11 @@
 	<module alias="SONAR" classname="robotique_3975_esjm.frc2018.interface_sonar.proto1.NullSonar">
 		<property name="add_listener" ref="APP" />
 	</module>
+	<!-- 
+	<module alias="SONAR2" classname="robotique_3975_esjm.frc2018.interface_sonar.proto2_jssc.JsscSonarInterface">
+		<property name="add_listener" ref="APP" />
+	</module>
+	 -->
 	<module alias="APP" classname="robotique_3975_esjm.frc2018.appli_declencheur_son.App">
 		<property name="sound_engine" ref="SOUND_ENGINE" />
 	</module>

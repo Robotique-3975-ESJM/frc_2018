@@ -64,9 +64,9 @@ public class SimpleSoundEngine implements ISoundEngine
 		@Override
 		public void run()
 		{
-			try
+            try (AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(_file))
 			{
-				play(_file);
+                play(audioInputStream);
 			}
 			catch (Exception e)
 			{
@@ -74,10 +74,8 @@ public class SimpleSoundEngine implements ISoundEngine
 			}
 		}
 
-		private void play(File file) throws Exception
+        private void play(AudioInputStream audioInputStream) throws Exception
 		{
-			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
-
 			AudioFormat format = audioInputStream.getFormat();
 			AudioInputStream playbackInputStream = AudioSystem.getAudioInputStream(format, audioInputStream);
 
@@ -97,7 +95,7 @@ public class SimpleSoundEngine implements ISoundEngine
 			}
 			catch (LineUnavailableException ex)
 			{
-				throw new RuntimeException("Unable to open the line: " + ex);
+                throw new RuntimeException("Unable to open the line: ", ex);
 			}
 
 			int frameSizeInBytes = format.getFrameSize();
